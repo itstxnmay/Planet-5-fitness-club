@@ -84,7 +84,7 @@ function MagneticCard({ image, title }: { image: string, title: string }) {
 
   return (
     <a 
-      href="#pricing"
+      href="#classes"
       ref={cardRef}
       className={`magnetic-card block relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] aspect-[3/4] group border border-white/5 bg-white/5 transition-all duration-300 ease-out active:scale-[0.98] ${isTouchDevice ? 'cursor-pointer' : 'cursor-none'}`}
       onMouseMove={handleMouseMove}
@@ -297,14 +297,15 @@ export default function App() {
                     d="M 50, 10 a 40,40 0 1,1 0,80 a 40,40 0 1,1 0,-80" 
                   />
                 </defs>
-                <text className="text-[10.5px] font-display font-bold uppercase tracking-[0.16em] fill-emerald-400">
+                <text fontSize="9" fontFamily="Oswald, sans-serif" fontWeight="700" fill="#34d399" letterSpacing="2">
                   <textPath href="#circlePath" startOffset="0%">
-                    NEXUS FITNESS • UNLEASH YOUR POTENTIAL • 
+                    NEXUS FITNESS • UNLEASH YOUR POTENTIAL
                   </textPath>
                 </text>
               </svg>
+              {/* Single glowing center dot */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.8)]" />
+                <div className="w-4 h-4 bg-emerald-500 rounded-full shadow-[0_0_20px_4px_rgba(16,185,129,0.9)]" />
               </div>
             </motion.div>
 
@@ -344,14 +345,17 @@ export default function App() {
       </section>
 
       {/* ═══════ Infinite Scrolling Marquee ═══════ */}
-      <section className="w-full overflow-hidden bg-white/5 backdrop-blur-md border-y border-white/10 py-3 sm:py-4 md:py-6 flex whitespace-nowrap relative z-20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-        <div className="flex animate-marquee">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center px-2 sm:px-4">
-              <span className="font-anton text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-stroke-heavy uppercase tracking-tighter">
-                ELITE COACHING • STATE OF THE ART FACILITY • 24/7 ACCESS •&nbsp;
-              </span>
-            </div>
+      <section className="w-full overflow-hidden bg-white/5 backdrop-blur-md border-y border-white/10 py-3 sm:py-4 md:py-6 relative z-20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...Array(8)].map((_, i) => (
+            <span key={i} className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-stroke-heavy uppercase tracking-tighter inline-flex items-center shrink-0 px-6 sm:px-8">
+              ELITE COACHING
+              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              STATE OF THE ART
+              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              24/7 ACCESS
+              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+            </span>
           ))}
         </div>
       </section>
@@ -460,7 +464,7 @@ export default function App() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {[
-              { name: 'Marcus Vance', role: 'Head of Strength', image: 'https://images.unsplash.com/photo-1567013127542-490d732e6b2a?q=80&w=1470&auto=format&fit=crop' },
+              { name: 'Marcus Vance', role: 'Head of Strength', image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1470&auto=format&fit=crop' },
               { name: 'Elena Rostova', role: 'Combat Specialist', image: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1374&auto=format&fit=crop' },
               { name: 'David Chen', role: 'Conditioning Coach', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1470&auto=format&fit=crop' },
               { name: 'Sarah Jenkins', role: 'Mobility Expert', image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800' }
