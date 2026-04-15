@@ -14,14 +14,28 @@ body {
   color: white;
   font-family: var(--font-sans);
   overflow-x: hidden;
-  cursor: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Marquee Animation */
+/* === CURSOR — desktop only === */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
+
+/* On touch devices, restore normal cursor and hide custom cursor element */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto !important; }
+  .custom-cursor { display: none !important; }
+  /* Restore normal cursor on magnetic cards on touch */
+  .magnetic-card { cursor: pointer !important; }
+}
+
+/* === Marquee Animation === */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -32,7 +46,14 @@ html {
   width: max-content;
 }
 
-/* Outlined Text */
+/* Slower marquee on mobile for readability */
+@media (max-width: 640px) {
+  .animate-marquee {
+    animation-duration: 14s;
+  }
+}
+
+/* === Outlined Text === */
 .text-stroke {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
   color: transparent;
@@ -42,4 +63,122 @@ html {
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
   -webkit-text-fill-color: transparent;
   color: transparent;
+}
+
+/* Thinner stroke on mobile so text doesn't look broken */
+@media (max-width: 640px) {
+  .text-stroke {
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
+  }
+  .text-stroke-heavy {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* === Mobile Menu Overlay === */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(9, 9, 11, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-overlay a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu-overlay a:hover,
+.mobile-menu-overlay a:active {
+  color: white;
+  transform: scale(1.05);
+}
+
+/* === Hamburger Button === */
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 28px;
+  height: 20px;
+  justify-content: center;
+  align-items: stretch;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  z-index: 60;
+  position: relative;
+}
+
+.hamburger-btn span {
+  display: block;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.hamburger-btn.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-btn.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* === Touch-friendly card states (mobile grayscale removal) === */
+@media (hover: none) {
+  .magnetic-card img {
+    filter: grayscale(0) !important;
+  }
+}
+
+/* === Safe area insets for notched phones === */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* === Fix 100vh on mobile browsers === */
+@supports (height: 100dvh) {
+  .min-h-screen-real {
+    min-height: 100dvh;
+  }
+}
+
+/* === Prevent horizontal overflow globally === */
+*, *::before, *::after {
+  max-width: 100vw;
+}
+
+section, nav, header, footer, main {
+  max-width: 100%;
 }
