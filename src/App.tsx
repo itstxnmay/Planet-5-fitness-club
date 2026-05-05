@@ -375,15 +375,15 @@ export default function App() {
           {/* Typography */}
           <div>
             <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-6 md:mb-8">
-              Redefining <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Human</span> <br />
-              Potential
+              Pune's Biggest <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Fitness</span> <br />
+              Destination
             </h2>
             <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed mb-6 md:mb-8">
-              We don't just build bodies; we forge iron-clad mindsets. Nexus is a sanctuary for the relentless, a proving ground where excuses die and legends are born. Our philosophy is simple: absolute dedication yields absolute results.
+              Planet 5 is more than a gym — it's a 30,000 sq. ft. fitness destination on Sinhagad Road, Pune. Whether you're a first-timer or a seasoned athlete, our state-of-the-art equipment, expert trainers, and vibrant community are here to push you further. More than just a gym — it's a destination for strength, energy, and transformation.
             </p>
-            <a href="#classes" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center">
-              Discover Our Ethos
+            <a href="#facilities" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center">
+              Explore Our Facility
             </a>
           </div>
           
