@@ -349,11 +349,17 @@ export default function App() {
         <div className="flex whitespace-nowrap animate-marquee">
           {[...Array(8)].map((_, i) => (
             <span key={i} className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-stroke-heavy uppercase tracking-tighter inline-flex items-center shrink-0 px-6 sm:px-8">
-              ELITE COACHING
+              YOGA & ZUMBA
               <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
-              STATE OF THE ART
+              CROSSFIT & HIIT
               <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
-              24/7 ACCESS
+              PERSONAL TRAINING
+              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              STEAM ROOM
+              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              CAFÉ & LOUNGE
+              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              30,000 SQ FT
               <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
             </span>
           ))}
