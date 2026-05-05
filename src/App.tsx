@@ -175,6 +175,57 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 }
 
 /* ────────────────────────────────────────────────────────────
+   3D Tilt Amenity Card
+   ──────────────────────────────────────────────────────────── */
+function AmenityCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia('(hover: none)').matches);
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouchDevice || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+    cardRef.current.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04,1.04,1.04)`;
+    cardRef.current.style.boxShadow = `0 20px 60px -10px rgba(16,185,129,0.25), 0 0 0 1px rgba(16,185,129,0.3)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+    cardRef.current.style.boxShadow = '';
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[1.5rem] md:rounded-[2rem] p-5 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-4 transition-[border-color] duration-300 will-change-transform"
+      style={{ transformStyle: 'preserve-3d', transition: 'transform 0.15s ease, box-shadow 0.15s ease, border-color 0.3s ease' }}
+    >
+      {/* Shine layer */}
+      <div className="pointer-events-none absolute inset-0 rounded-[1.5rem] md:rounded-[2rem] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-white/5 to-transparent" />
+      <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
+        {icon}
+      </div>
+      <div>
+        <h4 className="font-display text-sm sm:text-base md:text-xl font-bold uppercase tracking-wider mb-1 sm:mb-2">{title}</h4>
+        <p className="text-white/50 text-xs sm:text-sm font-light leading-relaxed">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
    Main App
    ──────────────────────────────────────────────────────────── */
 export default function App() {
@@ -364,8 +415,9 @@ export default function App() {
       {/* ═══════ Infinite Scrolling Marquee ═══════ */}
       <section className="w-full overflow-hidden bg-white/5 backdrop-blur-md border-y border-white/10 py-3 sm:py-4 md:py-6 relative z-20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
         <div className="flex whitespace-nowrap animate-marquee">
-          {[...Array(8)].map((_, i) => (
-            <span key={i} className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-stroke-heavy uppercase tracking-tighter inline-flex items-center shrink-0 px-6 sm:px-8">
+          {/* Two identical copies — first scrolls out, second seamlessly takes over */}
+          {[0, 1].map((copy) => (
+            <span key={copy} aria-hidden={copy === 1} className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-stroke-heavy uppercase tracking-tighter inline-flex items-center shrink-0 px-6 sm:px-8">
               YOGA & ZUMBA
               <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
               CROSSFIT & HIIT
@@ -494,15 +546,7 @@ export default function App() {
               { icon: <Coffee className="w-6 h-6 md:w-8 md:h-8" />, title: 'Café & Lounge', desc: 'Fuel up post-workout at our in-house café and lounge area.' },
               { icon: <Car className="w-6 h-6 md:w-8 md:h-8" />, title: 'Ample Parking', desc: 'Convenient, spacious parking available for all members.' },
             ].map((amenity, i) => (
-              <div key={i} className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[1.5rem] md:rounded-[2rem] p-5 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-4 transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)]">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
-                  {amenity.icon}
-                </div>
-                <div>
-                  <h4 className="font-display text-sm sm:text-base md:text-xl font-bold uppercase tracking-wider mb-1 sm:mb-2">{amenity.title}</h4>
-                  <p className="text-white/50 text-xs sm:text-sm font-light leading-relaxed">{amenity.desc}</p>
-                </div>
-              </div>
+              <AmenityCard key={i} icon={amenity.icon} title={amenity.title} desc={amenity.desc} />
             ))}
           </div>
         </div>
