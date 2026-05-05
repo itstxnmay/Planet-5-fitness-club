@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Activity, ArrowRight, Check, Users } from 'lucide-react';
+import { ArrowRight, Check, Users } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 
 /* ────────────────────────────────────────────────────────────
@@ -232,15 +232,15 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           {/* Text Content */}
           <div className="relative z-10">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-[3.2rem] leading-[0.85] sm:text-7xl md:text-8xl lg:text-[130px] font-bold uppercase tracking-tighter"
             >
-              Forge <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Your</span> <br />
-              Legacy
+              Where <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Fitness</span> <br />
+              Meets Lifestyle
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -248,7 +248,7 @@ export default function App() {
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 sm:mt-8 md:mt-10 text-base sm:text-lg md:text-xl text-white/50 max-w-md font-light leading-relaxed"
             >
-              Step into the ultimate arena. Unrivaled equipment, elite coaching, and a community of relentless achievers.
+              Step into 30,000 Sq. Ft. of pure fitness excellence — Sinhagad Road's biggest and most advanced fitness club. Built for beginners and pros alike.
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -256,11 +256,11 @@ export default function App() {
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6"
             >
-              <a href="#pricing" className="w-full sm:w-auto bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3">
-                Start Trial <ArrowRight className="w-5 h-5" />
+              <a href="#join" className="w-full sm:w-auto bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3">
+                Book Free Trial <ArrowRight className="w-5 h-5" />
               </a>
-              <a href="#about" className="w-full sm:w-auto bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center flex items-center justify-center">
-                View Facility
+              <a href="#facilities" className="w-full sm:w-auto bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center flex items-center justify-center">
+                Explore Facility
               </a>
             </motion.div>
           </div>
@@ -299,7 +299,7 @@ export default function App() {
                 </defs>
                 <text fontSize="9" fontFamily="Oswald, sans-serif" fontWeight="700" fill="#34d399" letterSpacing="2">
                   <textPath href="#circlePath" startOffset="0%">
-                    NEXUS FITNESS • UNLEASH YOUR POTENTIAL
+                    PLANET 5 FITNESS • SINHAGAD ROAD PUNE
                   </textPath>
                 </text>
               </svg>
@@ -320,24 +320,24 @@ export default function App() {
                 <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </div>
               <div>
-                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-tight leading-none mb-0.5 sm:mb-1">500+</div>
-                <div className="text-[8px] sm:text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">Elite Members</div>
+                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-tight leading-none mb-0.5 sm:mb-1">4.7★</div>
+                <div className="text-[8px] sm:text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">852 Google Reviews</div>
               </div>
             </motion.div>
 
-            {/* Floating Badge 2 — 24/7 Access */}
-            <motion.div 
+            {/* Floating Badge 2 — 30K Sq. Ft. */}
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
               className="absolute bottom-20 sm:bottom-24 md:bottom-32 -left-2 sm:-left-4 md:-left-12 z-20 bg-white/[0.02] backdrop-blur-xl border border-white/10 p-3 sm:p-4 md:p-5 rounded-2xl md:rounded-3xl flex items-center gap-3 sm:gap-4 md:gap-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
             >
               <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
-                <Activity className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </div>
               <div>
-                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-tight leading-none mb-0.5 sm:mb-1">24/7</div>
-                <div className="text-[8px] sm:text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">Unrestricted Access</div>
+                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-tight leading-none mb-0.5 sm:mb-1">30K</div>
+                <div className="text-[8px] sm:text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">Sq. Ft. of Excellence</div>
               </div>
             </motion.div>
           </div>
