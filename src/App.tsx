@@ -140,8 +140,8 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           className="fixed inset-0 z-40 bg-[#09090b]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
         >
           {[
-            { label: 'The Experience', href: '#classes' },
-            { label: 'Membership', href: '#pricing' },
+            { label: 'Facilities', href: '#facilities' },
+            { label: 'Join Us', href: '#join' },
             { label: 'About', href: '#about' },
           ].map((item, i) => (
             <motion.a
@@ -158,7 +158,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             </motion.a>
           ))}
           <motion.a
-            href="#pricing"
+            href="#join"
             onClick={onClose}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -166,7 +166,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-4 bg-emerald-500 text-black px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest active:scale-95 transition-all duration-300"
           >
-            Join Now
+            Book Free Trial
           </motion.a>
         </motion.div>
       )}
@@ -201,17 +201,17 @@ export default function App() {
       {/* ═══════ Navbar ═══════ */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-3 py-3 sm:px-4 sm:py-4 md:px-8 md:py-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 shadow-2xl">
-          <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-widest uppercase">Nexus</div>
+          <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-widest uppercase">Planet 5</div>
           
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-10 text-xs font-semibold tracking-widest uppercase text-white/60">
-            <a href="#classes" className="hover:text-white transition-all duration-300 ease-out active:scale-95">The Experience</a>
-            <a href="#pricing" className="hover:text-white transition-all duration-300 ease-out active:scale-95">Membership</a>
+            <a href="#facilities" className="hover:text-white transition-all duration-300 ease-out active:scale-95">Facilities</a>
+            <a href="#join" className="hover:text-white transition-all duration-300 ease-out active:scale-95">Join Us</a>
           </div>
           
           {/* Desktop CTA */}
-          <a href="#pricing" className="hidden md:inline-block bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 ease-out active:scale-95">
-            Join Now
+          <a href="#join" className="hidden md:inline-block bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 ease-out active:scale-95">
+            Book Free Trial
           </a>
 
           {/* Mobile hamburger */}
