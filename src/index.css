@@ -38,18 +38,18 @@ html {
 /* === Marquee Animation === */
 @keyframes marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-25%); }
+  100% { transform: translateX(-50%); }
 }
 
 .marquee-track {
-  animation: marquee 30s linear infinite;
+  animation: marquee 18s linear infinite;
   width: max-content;
+  display: flex;
 }
 
-/* Slower on mobile */
 @media (max-width: 640px) {
   .marquee-track {
-    animation-duration: 20s;
+    animation-duration: 12s;
   }
 }
 
