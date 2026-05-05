@@ -86,7 +86,7 @@ function MagneticCard({ image, title }: { image: string, title: string }) {
     <a 
       href="#classes"
       ref={cardRef}
-      className={`magnetic-card block relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] aspect-[3/4] group border border-white/5 bg-white/5 transition-all duration-300 ease-out active:scale-[0.98] ${isTouchDevice ? 'cursor-pointer' : 'cursor-none'}`}
+      className={`magnetic-card block relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] aspect-[4/3] sm:aspect-[3/4] group border border-white/5 bg-white/5 transition-all duration-300 ease-out active:scale-[0.98] ${isTouchDevice ? 'cursor-pointer' : 'cursor-none'}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -228,7 +228,7 @@ export default function App() {
       </nav>
 
       {/* ═══════ Hero Section ═══════ */}
-      <section className="relative pt-28 pb-12 sm:pt-36 sm:pb-16 md:pt-48 md:pb-24 px-4 sm:px-6 min-h-[100svh] flex items-center">
+      <section className="relative pt-24 pb-12 sm:pt-36 sm:pb-16 md:pt-48 md:pb-24 px-4 sm:px-6 min-h-[100svh] flex items-center">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           {/* Text Content */}
           <div className="relative z-10">
@@ -236,46 +236,64 @@ export default function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-[3.2rem] leading-[0.85] sm:text-7xl md:text-8xl lg:text-[130px] font-bold uppercase tracking-tighter"
+              className="font-display text-[2.6rem] leading-[0.88] xs:text-[3rem] sm:text-7xl md:text-8xl lg:text-[130px] font-bold uppercase tracking-tighter"
             >
               Where <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Fitness</span> <br />
               Meets Lifestyle
             </motion.h1>
-            <motion.p 
+
+            {/* Mobile-only stat pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="flex sm:hidden items-center gap-3 mt-5"
+            >
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5">
+                <span className="text-emerald-400 font-display font-bold text-sm">4.7★</span>
+                <span className="text-white/40 text-[10px] uppercase tracking-wider font-bold">852 Reviews</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5">
+                <span className="text-emerald-400 font-display font-bold text-sm">30K</span>
+                <span className="text-white/40 text-[10px] uppercase tracking-wider font-bold">Sq. Ft.</span>
+              </div>
+            </motion.div>
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 sm:mt-8 md:mt-10 text-base sm:text-lg md:text-xl text-white/50 max-w-md font-light leading-relaxed"
+              className="mt-5 sm:mt-8 md:mt-10 text-sm sm:text-lg md:text-xl text-white/50 max-w-md font-light leading-relaxed"
             >
               Step into 30,000 Sq. Ft. of pure fitness excellence — Sinhagad Road's biggest and most advanced fitness club. Built for beginners and pros alike.
             </motion.p>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6"
+              className="mt-6 sm:mt-10 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6"
             >
-              <a href="#join" className="w-full sm:w-auto bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3">
+              <a href="#join" className="w-full sm:w-auto bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3">
                 Book Free Trial <ArrowRight className="w-5 h-5" />
               </a>
-              <a href="#facilities" className="w-full sm:w-auto bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center flex items-center justify-center">
+              <a href="#facilities" className="w-full sm:w-auto bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center flex items-center justify-center">
                 Explore Facility
               </a>
             </motion.div>
           </div>
 
-          {/* Image & Floating Badges */}
-          <div className="relative mt-4 sm:mt-8 lg:mt-0">
+          {/* Image & Floating Badges — hidden on mobile, shown sm+ */}
+          <div className="relative hidden sm:block mt-8 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
               animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/5] border border-white/10 shadow-2xl group"
+              className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/5] border border-white/10 shadow-2xl group"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent z-10 opacity-80 pointer-events-none" />
-              <img 
-                src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop"
                 alt="Elite Gym Facility"
                 className="w-full h-full object-cover object-center grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-110"
                 referrerPolicy="no-referrer"
@@ -284,17 +302,17 @@ export default function App() {
             </motion.div>
 
             {/* Spinning Circular Badge */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 md:-bottom-12 md:-left-12 z-30 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 animate-[spin_10s_linear_infinite]"
+              className="absolute -bottom-6 -left-6 md:-bottom-12 md:-left-12 z-30 w-32 h-32 md:w-40 md:h-40 animate-[spin_10s_linear_infinite]"
             >
               <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible drop-shadow-lg">
                 <defs>
-                  <path 
-                    id="circlePath" 
-                    d="M 50, 10 a 40,40 0 1,1 0,80 a 40,40 0 1,1 0,-80" 
+                  <path
+                    id="circlePath"
+                    d="M 50, 10 a 40,40 0 1,1 0,80 a 40,40 0 1,1 0,-80"
                   />
                 </defs>
                 <text fontSize="9" fontFamily="Oswald, sans-serif" fontWeight="700" fill="#34d399" letterSpacing="2">
@@ -303,25 +321,24 @@ export default function App() {
                   </textPath>
                 </text>
               </svg>
-              {/* Single glowing center dot */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-4 h-4 bg-emerald-500 rounded-full shadow-[0_0_20px_4px_rgba(16,185,129,0.9)]" />
               </div>
             </motion.div>
 
-            {/* Floating Badge 1 — 500+ Members */}
-            <motion.div 
+            {/* Floating Badge 1 — 4.7★ */}
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute top-8 -right-2 sm:top-12 sm:-right-4 md:top-16 md:-right-12 z-20 bg-white/[0.02] backdrop-blur-xl border border-white/10 p-3 sm:p-4 md:p-5 rounded-2xl md:rounded-3xl flex items-center gap-3 sm:gap-4 md:gap-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
+              className="absolute top-12 -right-4 md:top-16 md:-right-12 z-20 bg-white/[0.02] backdrop-blur-xl border border-white/10 p-4 md:p-5 rounded-2xl md:rounded-3xl flex items-center gap-4 md:gap-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
-                <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
+                <Users className="w-5 h-5 md:w-6 md:h-6" />
               </div>
               <div>
-                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-tight leading-none mb-0.5 sm:mb-1">4.7★</div>
-                <div className="text-[8px] sm:text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">852 Google Reviews</div>
+                <div className="font-display font-bold text-2xl md:text-3xl tracking-tight leading-none mb-1">4.7★</div>
+                <div className="text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">852 Google Reviews</div>
               </div>
             </motion.div>
 
@@ -330,14 +347,14 @@ export default function App() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute bottom-20 sm:bottom-24 md:bottom-32 -left-2 sm:-left-4 md:-left-12 z-20 bg-white/[0.02] backdrop-blur-xl border border-white/10 p-3 sm:p-4 md:p-5 rounded-2xl md:rounded-3xl flex items-center gap-3 sm:gap-4 md:gap-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
+              className="absolute bottom-24 md:bottom-32 -left-4 md:-left-12 z-20 bg-white/[0.02] backdrop-blur-xl border border-white/10 p-4 md:p-5 rounded-2xl md:rounded-3xl flex items-center gap-4 md:gap-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
-                <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-500/10 rounded-xl md:rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20 shrink-0">
+                <Users className="w-5 h-5 md:w-6 md:h-6" />
               </div>
               <div>
-                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-tight leading-none mb-0.5 sm:mb-1">30K</div>
-                <div className="text-[8px] sm:text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">Sq. Ft. of Excellence</div>
+                <div className="font-display font-bold text-2xl md:text-3xl tracking-tight leading-none mb-1">30K</div>
+                <div className="text-[9px] md:text-[10px] text-white/50 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold">Sq. Ft. of Excellence</div>
               </div>
             </motion.div>
           </div>
@@ -388,7 +405,7 @@ export default function App() {
           </div>
           
           {/* Asymmetrical Collage */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 h-[350px] sm:h-[450px] md:h-[600px]">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 h-[260px] sm:h-[450px] md:h-[600px]">
             <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] h-full group">
               <img 
                 src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop" 
@@ -439,7 +456,7 @@ export default function App() {
             </a>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             <MagneticCard 
               image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" 
               title="Strength" 
@@ -514,7 +531,7 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 mb-12 md:mb-16">
             <a
               href="tel:+919766025075"
-              className="bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3"
+              className="bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3"
             >
               <Phone className="w-5 h-5" /> Call Us Now
             </a>
@@ -522,7 +539,7 @@ export default function App() {
               href="https://wa.me/919766025075"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 flex items-center justify-center gap-3"
+              className="bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 flex items-center justify-center gap-3"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               WhatsApp Us
