@@ -555,9 +555,16 @@ export default function App() {
 
       {/* ═══════ Footer ═══════ */}
       <footer className="relative border-t border-white/10 py-8 sm:py-10 md:py-12 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-white/30 text-xs sm:text-sm">
-          <div className="font-display font-bold text-lg sm:text-xl tracking-widest uppercase">Nexus</div>
-          <p>© {new Date().getFullYear()} Nexus Fitness. All rights reserved.</p>
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-4">
+          <div>
+            <div className="font-display font-bold text-lg sm:text-xl tracking-widest uppercase text-white mb-1">Planet 5 Fitness</div>
+            <p className="text-white/30 text-xs">Where Fitness Meets Lifestyle</p>
+          </div>
+          <div className="flex flex-col items-start sm:items-end gap-1 text-white/30 text-xs">
+            <p>2nd Floor, Dhareshwar Banquet Hall, Sinhgad Rd, Pune 411068</p>
+            <p>+91 97660 25075 · Planet55fitness@gmail.com</p>
+            <p className="mt-2">© {new Date().getFullYear()} Planet 5 Fitness Club. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
