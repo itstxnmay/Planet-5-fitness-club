@@ -414,22 +414,22 @@ export default function App() {
 
       {/* ═══════ Infinite Scrolling Marquee ═══════ */}
       <section className="w-full overflow-hidden bg-white/5 backdrop-blur-md border-y border-white/10 py-3 sm:py-4 md:py-6 relative z-20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {/* Two identical copies — first scrolls out, second seamlessly takes over */}
-          {[0, 1].map((copy) => (
-            <span key={copy} aria-hidden={copy === 1} className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-stroke-heavy uppercase tracking-tighter inline-flex items-center shrink-0 px-6 sm:px-8">
-              YOGA & ZUMBA
-              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
-              CROSSFIT & HIIT
-              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+        <div className="marquee-track flex whitespace-nowrap">
+          {/* 4 copies — ensures seamless fill across all screen widths */}
+          {[0, 1, 2, 3].map((copy) => (
+            <span key={copy} aria-hidden={copy > 0} className="font-anton text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-stroke-heavy uppercase tracking-tighter inline-flex items-center shrink-0 px-4 sm:px-6">
+              YOGA &amp; ZUMBA
+              <span className="mx-3 sm:mx-5 text-emerald-400"> • </span>
+              CROSSFIT &amp; HIIT
+              <span className="mx-3 sm:mx-5 text-emerald-400"> • </span>
               PERSONAL TRAINING
-              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              <span className="mx-3 sm:mx-5 text-emerald-400"> • </span>
               STEAM ROOM
-              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
-              CAFÉ & LOUNGE
-              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              <span className="mx-3 sm:mx-5 text-emerald-400"> • </span>
+              CAFÉ &amp; LOUNGE
+              <span className="mx-3 sm:mx-5 text-emerald-400"> • </span>
               30,000 SQ FT
-              <span className="mx-4 sm:mx-6 text-emerald-400 not-italic"> • </span>
+              <span className="mx-3 sm:mx-5 text-emerald-400"> • </span>
             </span>
           ))}
         </div>
