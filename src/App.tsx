@@ -413,16 +413,16 @@ export default function App() {
       </section>
 
       {/* ═══════ Infinite Scrolling Marquee ═══════ */}
-      <section className="w-full overflow-hidden bg-white/5 backdrop-blur-md border-y border-white/10 py-3 sm:py-4 md:py-6 relative z-20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-        <div className="marquee-track">
+      <section className="marquee-section w-full overflow-hidden bg-white/5 backdrop-blur-md border-y border-white/10 py-3 sm:py-4 md:py-6 relative z-20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div className="marquee-track whitespace-nowrap">
           {[0, 1].map((copy) => (
-            <span key={copy} aria-hidden={copy === 1} className="font-anton text-4xl sm:text-5xl md:text-6xl text-stroke-heavy uppercase inline-flex items-center shrink-0 px-8">
-              YOGA &amp; ZUMBA <em className="mx-5 text-emerald-400 not-italic"> • </em>
-              CROSSFIT &amp; HIIT <em className="mx-5 text-emerald-400 not-italic"> • </em>
-              PERSONAL TRAINING <em className="mx-5 text-emerald-400 not-italic"> • </em>
-              STEAM ROOM <em className="mx-5 text-emerald-400 not-italic"> • </em>
-              CAFÉ &amp; LOUNGE <em className="mx-5 text-emerald-400 not-italic"> • </em>
-              30,000 SQ FT <em className="mx-5 text-emerald-400 not-italic"> • </em>
+            <span key={copy} aria-hidden={copy === 1} className="marquee-content font-anton text-4xl sm:text-5xl md:text-6xl text-stroke-heavy uppercase tracking-tight">
+              {"YOGA & ZUMBA"}<span className="mx-4 sm:mx-6 text-emerald-400"> • </span>
+              {"CROSSFIT & HIIT"}<span className="mx-4 sm:mx-6 text-emerald-400"> • </span>
+              {"PERSONAL TRAINING"}<span className="mx-4 sm:mx-6 text-emerald-400"> • </span>
+              {"STEAM ROOM"}<span className="mx-4 sm:mx-6 text-emerald-400"> • </span>
+              {"CAFÉ & LOUNGE"}<span className="mx-4 sm:mx-6 text-emerald-400"> • </span>
+              {"30,000 SQ FT"}<span className="mx-4 sm:mx-6 text-emerald-400"> • </span>
             </span>
           ))}
         </div>
