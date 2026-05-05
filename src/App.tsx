@@ -428,14 +428,14 @@ export default function App() {
           <div className="mb-10 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter">
-                Elite <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Classes</span>
+                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Programs</span>
               </h2>
               <p className="mt-4 sm:mt-6 text-white/50 max-w-xl text-base sm:text-lg font-light">
-                Push your limits with our specialized training programs designed for maximum performance and results.
+                From CrossFit to Zumba, our certified coaches run programs for every fitness level — beginner to advanced.
               </p>
             </div>
-            <a href="#pricing" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 shrink-0 text-center">
-              View All Classes
+            <a href="#join" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 shrink-0 text-center">
+              Join Now
             </a>
           </div>
           
@@ -444,13 +444,13 @@ export default function App() {
               image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" 
               title="Strength" 
             />
-            <MagneticCard 
-              image="https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=1469&auto=format&fit=crop" 
-              title="Conditioning" 
+            <MagneticCard
+              image="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=1470&auto=format&fit=crop"
+              title="Yoga & Zumba"
             />
-            <MagneticCard 
-              image="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1470&auto=format&fit=crop" 
-              title="Combat" 
+            <MagneticCard
+              image="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1470&auto=format&fit=crop"
+              title="Kickboxing"
             />
           </div>
         </div>
