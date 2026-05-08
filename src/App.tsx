@@ -567,13 +567,13 @@ export default function App() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 mb-12 md:mb-16">
             <a
-              href="tel:+15550123456"
+              href="#"
               className="bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3"
             >
               <Phone className="w-5 h-5" /> Call Us Now
             </a>
             <a
-              href="https://wa.me/15550123456"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 flex items-center justify-center gap-3"
@@ -589,7 +589,7 @@ export default function App() {
               <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                 <Phone className="w-5 h-5" />
               </div>
-              <a href="tel:+15550123456" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors">+1 (555) 012-3456</a>
+              <a href="#" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors">+1 (555) 012-34XX</a>
             </div>
             <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
               <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
@@ -616,7 +616,7 @@ export default function App() {
           </div>
           <div className="flex flex-col items-start sm:items-end gap-1 text-white/30 text-xs">
             <p>123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p>
-            <p>+1 (555) 012-3456 · info@planet5fitness.com</p>
+            <p>+1 (555) 012-34XX · info@planet5fitness.com</p>
             <p className="mt-2">© {new Date().getFullYear()} Planet 5 Fitness Club. All rights reserved.</p>
           </div>
         </div>
