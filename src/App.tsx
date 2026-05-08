@@ -317,7 +317,7 @@ export default function App() {
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="mt-5 sm:mt-8 md:mt-10 text-sm sm:text-lg md:text-xl text-white/50 max-w-md font-light leading-relaxed"
             >
-              Step into 30,000 Sq. Ft. of pure fitness excellence — Sinhagad Road's biggest and most advanced fitness club. Built for beginners and pros alike.
+              Step into 30,000 Sq. Ft. of pure fitness excellence — Downtown LA's biggest and most advanced fitness club. Built for beginners and pros alike.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -368,7 +368,7 @@ export default function App() {
                 </defs>
                 <text fontSize="9" fontFamily="Oswald, sans-serif" fontWeight="700" fill="#34d399" letterSpacing="2">
                   <textPath href="#circlePath" startOffset="0%">
-                    PLANET 5 FITNESS • SINHAGAD ROAD PUNE
+                    PLANET 5 FITNESS • DOWNTOWN LOS ANGELES
                   </textPath>
                 </text>
               </svg>
@@ -437,12 +437,12 @@ export default function App() {
           {/* Typography */}
           <div>
             <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-6 md:mb-8">
-              Pune's Biggest <br />
+              LA's Biggest <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Fitness</span> <br />
               Destination
             </h2>
             <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed mb-6 md:mb-8">
-              Planet 5 is more than a gym — it's a 30,000 sq. ft. fitness destination on Sinhagad Road, Pune. Whether you're a first-timer or a seasoned athlete, our state-of-the-art equipment, expert trainers, and vibrant community are here to push you further. More than just a gym — it's a destination for strength, energy, and transformation.
+              Planet 5 is more than a gym — it's a 30,000 sq. ft. fitness destination in Downtown Los Angeles, CA. Whether you're a first-timer or a seasoned athlete, our state-of-the-art equipment, expert trainers, and vibrant community are here to push you further. More than just a gym — it's a destination for strength, energy, and transformation.
             </p>
             <a href="#facilities" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center">
               Explore Our Facility
@@ -526,7 +526,7 @@ export default function App() {
               World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Amenities</span>
             </h2>
             <p className="mt-4 sm:mt-6 text-white/50 max-w-2xl mx-auto text-base sm:text-lg font-light">
-              Everything you need under one roof — Pune's most complete fitness facility.
+              Everything you need under one roof — LA's most complete fitness facility.
             </p>
           </div>
 
@@ -561,19 +561,19 @@ export default function App() {
           </h2>
 
           <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10 md:mb-14">
-            Visit us at Sinhagad Road or get in touch — our team will help you find the right program and get you started with a free trial session.
+            Visit us in Downtown LA or get in touch — our team will help you find the right program and get you started with a free trial session.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 mb-12 md:mb-16">
             <a
-              href="tel:+919766025075"
+              href="tel:+15550123456"
               className="bg-emerald-500 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-emerald-400 transition-all duration-300 ease-out active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3"
             >
               <Phone className="w-5 h-5" /> Call Us Now
             </a>
             <a
-              href="https://wa.me/919766025075"
+              href="https://wa.me/15550123456"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-sm uppercase tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 flex items-center justify-center gap-3"
@@ -589,19 +589,19 @@ export default function App() {
               <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                 <Phone className="w-5 h-5" />
               </div>
-              <a href="tel:+919766025075" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors">+91 97660 25075</a>
+              <a href="tel:+15550123456" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors">+1 (555) 012-3456</a>
             </div>
             <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
               <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                 <Mail className="w-5 h-5" />
               </div>
-              <a href="mailto:Planet55fitness@gmail.com" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors break-all">Planet55fitness@gmail.com</a>
+              <a href="mailto:info@planet5fitness.com" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors break-all">info@planet5fitness.com</a>
             </div>
             <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
               <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                 <MapPin className="w-5 h-5" />
               </div>
-              <p className="text-white/70 text-sm font-light text-center leading-relaxed">2nd Floor, Dhareshwar Banquet Hall, Sinhgad Rd, Pune 411068</p>
+              <p className="text-white/70 text-sm font-light text-center leading-relaxed">123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p>
             </div>
           </div>
         </div>
@@ -615,8 +615,8 @@ export default function App() {
             <p className="text-white/30 text-xs">Where Fitness Meets Lifestyle</p>
           </div>
           <div className="flex flex-col items-start sm:items-end gap-1 text-white/30 text-xs">
-            <p>2nd Floor, Dhareshwar Banquet Hall, Sinhgad Rd, Pune 411068</p>
-            <p>+91 97660 25075 · Planet55fitness@gmail.com</p>
+            <p>123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p>
+            <p>+1 (555) 012-3456 · info@planet5fitness.com</p>
             <p className="mt-2">© {new Date().getFullYear()} Planet 5 Fitness Club. All rights reserved.</p>
           </div>
         </div>
