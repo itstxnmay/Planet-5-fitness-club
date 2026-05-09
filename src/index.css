@@ -193,3 +193,10 @@ html {
 section:not(.marquee-section), nav, header, footer, main {
   max-width: 100%;
 }
+
+/* === Touch Ripple — mobile inversion effect === */
+@keyframes touch-ripple {
+  0%   { transform: scale(0.3); opacity: 1; }
+  60%  { transform: scale(2);   opacity: 0.5; }
+  100% { transform: scale(3);   opacity: 0; }
+}

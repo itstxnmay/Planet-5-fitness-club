@@ -55,6 +55,57 @@ function CustomCursor() {
 }
 
 /* ────────────────────────────────────────────────────────────
+   Touch Ripple — inversion ripple on tap for mobile devices
+   ──────────────────────────────────────────────────────────── */
+interface Ripple {
+  id: number;
+  x: number;
+  y: number;
+}
+
+function TouchRippleLayer() {
+  const [ripples, setRipples] = useState<Ripple[]>([]);
+  const isTouch = useRef(false);
+
+  useEffect(() => {
+    isTouch.current = window.matchMedia('(hover: none)').matches;
+    if (!isTouch.current) return;
+
+    const handleTouch = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const newRipple: Ripple = { id: Date.now(), x: touch.clientX, y: touch.clientY };
+      setRipples(prev => [...prev, newRipple]);
+      setTimeout(() => {
+        setRipples(prev => prev.filter(r => r.id !== newRipple.id));
+      }, 450);
+    };
+
+    window.addEventListener('touchstart', handleTouch, { passive: true });
+    return () => window.removeEventListener('touchstart', handleTouch);
+  }, []);
+
+  return (
+    <>
+      {ripples.map(ripple => (
+        <div
+          key={ripple.id}
+          className="fixed pointer-events-none z-[9999] mix-blend-difference"
+          style={{
+            left: ripple.x - 20,
+            top: ripple.y - 20,
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            backgroundColor: 'white',
+            animation: 'touch-ripple 0.45s ease-out forwards',
+          }}
+        />
+      ))}
+    </>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
    Magnetic Card — hover effect on desktop, tap-safe on mobile
    ──────────────────────────────────────────────────────────── */
 function MagneticCard({ image, title }: { image: string, title: string }) {
@@ -226,6 +277,28 @@ function AmenityCard({ icon, title, desc }: { icon: React.ReactNode; title: stri
 }
 
 /* ────────────────────────────────────────────────────────────
+   Scroll Reveal — reusable fade+slide wrapper
+   ──────────────────────────────────────────────────────────── */
+function Reveal({ children, delay = 0, direction = 'up' }: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: 'up' | 'left' | 'right';
+}) {
+  const y = direction === 'up' ? 40 : 0;
+  const x = direction === 'left' ? -40 : direction === 'right' ? 40 : 0;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
    Main App
    ──────────────────────────────────────────────────────────── */
 export default function App() {
@@ -243,6 +316,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-[#09090b] text-white selection:bg-emerald-500/30 overflow-x-hidden">
       <CustomCursor />
+      <TouchRippleLayer />
       <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
       
       {/* Background Gradient — smaller on mobile */}
@@ -436,51 +510,59 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
           {/* Typography */}
           <div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-6 md:mb-8">
-              LA's Biggest <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Fitness</span> <br />
-              Destination
-            </h2>
-            <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed mb-6 md:mb-8">
-              Planet 5 is more than a gym — it's a 30,000 sq. ft. fitness destination in Downtown Los Angeles, CA. Whether you're a first-timer or a seasoned athlete, our state-of-the-art equipment, expert trainers, and vibrant community are here to push you further. More than just a gym — it's a destination for strength, energy, and transformation.
-            </p>
-            <a href="#facilities" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center">
-              Explore Our Facility
-            </a>
+            <Reveal direction="left">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-6 md:mb-8">
+                LA's Biggest <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Fitness</span> <br />
+                Destination
+              </h2>
+            </Reveal>
+            <Reveal delay={0.15} direction="left">
+              <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed mb-6 md:mb-8">
+                Planet 5 is more than a gym — it's a 30,000 sq. ft. fitness destination in Downtown Los Angeles, CA. Whether you're a first-timer or a seasoned athlete, our state-of-the-art equipment, expert trainers, and vibrant community are here to push you further. More than just a gym — it's a destination for strength, energy, and transformation.
+              </p>
+            </Reveal>
+            <Reveal delay={0.25} direction="left">
+              <a href="#facilities" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 text-center">
+                Explore Our Facility
+              </a>
+            </Reveal>
           </div>
-          
+
           {/* Asymmetrical Collage */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 h-[260px] sm:h-[450px] md:h-[600px]">
-            <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] h-full group">
-              <img 
-                src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop" 
-                alt="Training" 
-                className="w-full h-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-              />
-            </div>
-            <div className="grid grid-rows-2 gap-3 sm:gap-4 h-full">
+          <Reveal delay={0.1} direction="right">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 h-[260px] sm:h-[450px] md:h-[600px]">
               <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] h-full group">
-                <img 
-                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop" 
-                  alt="Weights" 
+                <img
+                  src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop"
+                  alt="Training"
                   className="w-full h-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                 />
               </div>
-              <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] h-full group">
-                <img 
-                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop" 
-                  alt="Focus" 
-                  className="w-full h-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
+              <div className="grid grid-rows-2 gap-3 sm:gap-4 h-full">
+                <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] h-full group">
+                  <img
+                    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop"
+                    alt="Weights"
+                    className="w-full h-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] h-full group">
+                  <img
+                    src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop"
+                    alt="Focus"
+                    className="w-full h-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -488,32 +570,33 @@ export default function App() {
       <section id="classes" className="relative py-16 sm:py-20 md:py-32 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
-            <div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter">
-                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Programs</span>
-              </h2>
-              <p className="mt-4 sm:mt-6 text-white/50 max-w-xl text-base sm:text-lg font-light">
-                From CrossFit to Zumba, our certified coaches run programs for every fitness level — beginner to advanced.
-              </p>
-            </div>
-            <a href="#join" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 shrink-0 text-center">
-              Join Now
-            </a>
+            <Reveal direction="left">
+              <div>
+                <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter">
+                  Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Programs</span>
+                </h2>
+                <p className="mt-4 sm:mt-6 text-white/50 max-w-xl text-base sm:text-lg font-light">
+                  From CrossFit to Zumba, our certified coaches run programs for every fitness level — beginner to advanced.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.15} direction="right">
+              <a href="#join" className="inline-block bg-white/[0.02] backdrop-blur-xl border border-white/10 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 ease-out active:scale-95 shrink-0 text-center">
+                Join Now
+              </a>
+            </Reveal>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-            <MagneticCard 
-              image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" 
-              title="Strength" 
-            />
-            <MagneticCard
-              image="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=1470&auto=format&fit=crop"
-              title="Yoga & Zumba"
-            />
-            <MagneticCard
-              image="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1470&auto=format&fit=crop"
-              title="Kickboxing"
-            />
+            {[
+              { image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop", title: "Strength" },
+              { image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=1470&auto=format&fit=crop", title: "Yoga & Zumba" },
+              { image: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1470&auto=format&fit=crop", title: "Kickboxing" },
+            ].map((card, i) => (
+              <Reveal key={card.title} delay={i * 0.1}>
+                <MagneticCard image={card.image} title={card.title} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -521,14 +604,16 @@ export default function App() {
       {/* ═══════ World-Class Amenities ═══════ */}
       <section id="facilities" className="relative py-16 sm:py-20 md:py-32 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-10 md:mb-16 text-center">
-            <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter">
-              World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Amenities</span>
-            </h2>
-            <p className="mt-4 sm:mt-6 text-white/50 max-w-2xl mx-auto text-base sm:text-lg font-light">
-              Everything you need under one roof — LA's most complete fitness facility.
-            </p>
-          </div>
+          <Reveal>
+            <div className="mb-10 md:mb-16 text-center">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter">
+                World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Amenities</span>
+              </h2>
+              <p className="mt-4 sm:mt-6 text-white/50 max-w-2xl mx-auto text-base sm:text-lg font-light">
+                Everything you need under one roof — LA's most complete fitness facility.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {[
@@ -539,7 +624,9 @@ export default function App() {
               { icon: <Coffee className="w-6 h-6 md:w-8 md:h-8" />, title: 'Café & Lounge', desc: 'Fuel up post-workout at our in-house café and lounge area.' },
               { icon: <Car className="w-6 h-6 md:w-8 md:h-8" />, title: 'Ample Parking', desc: 'Convenient, spacious parking available for all members.' },
             ].map((amenity, i) => (
-              <AmenityCard key={i} icon={amenity.icon} title={amenity.title} desc={amenity.desc} />
+              <Reveal key={i} delay={i * 0.08}>
+                <AmenityCard icon={amenity.icon} title={amenity.title} desc={amenity.desc} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -552,19 +639,26 @@ export default function App() {
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           {/* Badge */}
-          <div className="inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2 rounded-full mb-6 md:mb-8">
-            Free Trial Available
-          </div>
+          <Reveal>
+            <div className="inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2 rounded-full mb-6 md:mb-8">
+              Free Trial Available
+            </div>
+          </Reveal>
 
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold uppercase tracking-tighter mb-6 md:mb-8">
-            Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Transform?</span>
-          </h2>
+          <Reveal delay={0.1}>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold uppercase tracking-tighter mb-6 md:mb-8">
+              Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Transform?</span>
+            </h2>
+          </Reveal>
 
-          <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10 md:mb-14">
-            Visit us in Downtown LA or get in touch — our team will help you find the right program and get you started with a free trial session.
-          </p>
+          <Reveal delay={0.2}>
+            <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10 md:mb-14">
+              Visit us in Downtown LA or get in touch — our team will help you find the right program and get you started with a free trial session.
+            </p>
+          </Reveal>
 
           {/* CTA Buttons */}
+          <Reveal delay={0.3}>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 mb-12 md:mb-16">
             <a
               href="#"
@@ -582,44 +676,43 @@ export default function App() {
               WhatsApp Us
             </a>
           </div>
+          </Reveal>
 
           {/* Contact Detail Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
-              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
-                <Phone className="w-5 h-5" />
-              </div>
-              <a href="#" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors">+1 (555) 012-34XX</a>
-            </div>
-            <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
-              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
-                <Mail className="w-5 h-5" />
-              </div>
-              <a href="mailto:info@planet5fitness.com" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors break-all">info@planet5fitness.com</a>
-            </div>
-            <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
-              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <p className="text-white/70 text-sm font-light text-center leading-relaxed">123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p>
-            </div>
+            {[
+              { icon: <Phone className="w-5 h-5" />, content: <a href="#" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors">+1 (555) 012-34XX</a> },
+              { icon: <Mail className="w-5 h-5" />, content: <a href="mailto:info@planet5fitness.com" className="text-white/70 text-sm font-light hover:text-emerald-400 transition-colors break-all">info@planet5fitness.com</a> },
+              { icon: <MapPin className="w-5 h-5" />, content: <p className="text-white/70 text-sm font-light text-center leading-relaxed">123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p> },
+            ].map((item, i) => (
+              <Reveal key={i} delay={0.1 + i * 0.1}>
+                <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col items-center gap-3 hover:border-emerald-500/30 transition-all duration-300">
+                  <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+                    {item.icon}
+                  </div>
+                  {item.content}
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ═══════ Footer ═══════ */}
       <footer className="relative border-t border-white/10 py-8 sm:py-10 md:py-12 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-4">
-          <div>
-            <div className="font-display font-bold text-lg sm:text-xl tracking-widest uppercase text-white mb-1">Planet 5 Fitness</div>
-            <p className="text-white/30 text-xs">Where Fitness Meets Lifestyle</p>
+        <Reveal>
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-4">
+            <div>
+              <div className="font-display font-bold text-lg sm:text-xl tracking-widest uppercase text-white mb-1">Planet 5 Fitness</div>
+              <p className="text-white/30 text-xs">Where Fitness Meets Lifestyle</p>
+            </div>
+            <div className="flex flex-col items-start sm:items-end gap-1 text-white/30 text-xs">
+              <p>123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p>
+              <p>+1 (555) 012-34XX · info@planet5fitness.com</p>
+              <p className="mt-2">© {new Date().getFullYear()} Planet 5 Fitness Club. All rights reserved.</p>
+            </div>
           </div>
-          <div className="flex flex-col items-start sm:items-end gap-1 text-white/30 text-xs">
-            <p>123 Fitness Ave, Suite 200, Los Angeles, CA 90001</p>
-            <p>+1 (555) 012-34XX · info@planet5fitness.com</p>
-            <p className="mt-2">© {new Date().getFullYear()} Planet 5 Fitness Club. All rights reserved.</p>
-          </div>
-        </div>
+        </Reveal>
       </footer>
     </div>
   );
